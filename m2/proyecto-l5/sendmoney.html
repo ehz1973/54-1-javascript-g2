@@ -58,11 +58,11 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-9 col-lg-7">
                     <h2>Balance de cuenta $ <span id="balance">0</span></h2>
-                    <form>
+                    <form id="formSendMoney">
                         <div class="mb-3">
-                            <label for="buscar-contacto" class="form-label">Buscar en la agenda de
+                            <label for="buscarContacto" class="form-label">Buscar en la agenda de
                                 transferencias:</label>
-                            <input type="text" class="form-control" placeholder="Ingresa nombre contacto...">
+                            <input type="text" class="form-control" placeholder="Ingresa nombre contacto..." name="buscarContacto" id="buscarContacto">
                         </div>
                         <div class="mb-3">
                             <button class="btn btn-primary">Agregar nuevo contacto</button>
@@ -78,6 +78,11 @@
 
                             </div>
 
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="monto" class="form-label">Monto a transferir:</label>
+                            <input type="number" class="form-control" min="500" name="monto" id="monto" placeholder="Monto mónimo: 500">
                         </div>
 
                         <div class="mb-3">
