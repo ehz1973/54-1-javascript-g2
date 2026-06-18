@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul id="listaPersonas">
+
+    </ul>
+
+    <div>
+        <label for="">Nueva Persona</label>
+        <input type="text" id="persona">
+        <button id="btnAgregar">Agregar persona</button>
+    </div>
+    
+
+    <script>
+        const listaPersonasEl = document.getElementById("listaPersonas");
+
+        const  personas = ["Pedro", "Juan", "Diego", "Ana"];
+
+        personas.forEach(persona => {
+
+            let li = document.createElement("li");
+            li.innerText = persona;
+
+            listaPersonasEl.appendChild(li);
+        });
+
+
+        const btnAgregarEl = document.getElementById("btnAgregar");
+
+        btnAgregarEl.addEventListener("click", (event) => {
+
+            let nuevaPersona = document.getElementById("persona").value;
+
+            if(nuevaPersona){
+                let personaInputEl = document.getElementById("persona");
+                let li = document.createElement("li");
+                li.innerText = personaInputEl.value;
+                listaPersonasEl.appendChild(li);
+                personaInputEl.value = "";
+            }else {
+                alert("Debe ingresar un nombre válido.");
+            }
+        });
+
+    </script>
+</body>
+</html>

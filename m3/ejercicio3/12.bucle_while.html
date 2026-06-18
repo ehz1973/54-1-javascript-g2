@@ -1,0 +1,39 @@
+<button id="btnAcceso">Ingresar código</button>
+
+<script>
+
+    const btnAcceso = document.getElementById("btnAcceso");
+
+    btnAcceso.addEventListener("click", validarAcceso);
+
+
+    function validarAcceso() {
+        const CODIGO_ACCESO = "123456";
+        let intento = 1;
+
+        while (true) {
+            const entrada = prompt(intento === 1
+                ? "Ingrese el código de acceso..."
+                : `Error, intento N° ${intento}. Ingrese el código nuevamente...`
+            );
+
+            // Si el código es correcto, damos acceso y rompemos el bucle
+            if (entrada === CODIGO_ACCESO) {
+                alert("Acceso concedido!");
+                break;
+            }
+
+            // Si el código es incorrecto, preguntamos si desea continuar
+            const deseaContinuar = confirm("Código incorrecto. ¿Deseas seguir intentándolo?");
+
+            if (!deseaContinuar) {
+                alert("Acceso denegado. Intento cancelado por el usuario.");
+                break;
+            }
+
+            intento++;
+        }
+    }
+
+
+</script>
