@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wallet - Últimos Movimientos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        #listaTransaccionesEl span {
+            font-weight: 800;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Últimos Movimientos</h2>
+
+        <section class="d-flex justify-content-around">
+            <button class="btn btn-secondary" id="btnTodoEl">Todo</button>
+            <button class="btn btn-success" id="btnIngresosEl">Ingresos</button>
+            <button class="btn btn-danger" id="btnEgresosEl">Egresos</button>
+        </section>
+        <section class="my-3">
+            <ul class="list-group" id="listaTransaccionesEl">
+
+            </ul>
+        </section>
+
+        <a href="menu.html" class="btn btn-secondary">Volver al Menú Principal</a>
+    </div>
+</body>
+
+
+
+<script>
+
+    class Transaccion {
+        //AQUÍ VAMOS A DEFINIR LAS PROPIEDADES
+        constructor(id, glosa = "", monto = 0, fecha = "", ingreso = true) {
+            this.id = id;
+            this.glosa = glosa;
+            this.monto = monto;
+            this.fecha = fecha;
+            this.ingreso = ingreso; //por defecto true -> ingreso / false -> egreso
+        }
+        //AQUÍ VAMOS A DEFINIR LOS MÉTODOS
+
+        montoStr() {
+            return this.monto.toLocaleString("es-CL", { style: "currency", currency: "CLP" });
+        }
+    };
+
+    const t1 = new Transaccion(1, "Compra en línea", 75_000, "04/06/2026", false);
+    const t2 = new Transaccion(2, "Depósito", 10_000, "04/06/2026", true);
+    const t3 = new Transaccion(3, "Transferencia", 25_000, "04/06/2026", false);
+
+    const transaccionesDB = [t1, t2, t3];
+
+
+
+    //FUNCIÓN ENCARGADA DE AGREGAR ELEMENTOS DE LISTA A LA UL
+
+    function cargarListaTransacciones(listaTransacciones = []) {
+
+        if (listaTransacciones.length == 0) {
+            return false;
+        };
+
+        const listaTransaccionesEl = document.getElementById("listaTransaccionesEl");
+
+        listaTransaccionesEl.innerHTML = "";
+
+        const fragment = new DocumentFragment();
+
+        for (const transaccion of listaTransacciones) {
+
+            let { glosa, ingreso } = transaccion;
+
+            const li = document.createElement("li");
+            li.textContent = glosa;
+
+            //AGREGAR LAS CLASES DE BOOTSTRAP AL LI
+            li.classList.add("list-group-item", "list-group-item-action", "d-flex", "justify-content-between");
+
+            if (ingreso) {
+                li.classList.add("list-group-item-success");
+            } else {
+                li.classList.add("list-group-item-danger");
+            }
+
+            const span = document.createElement("span");
+            span.textContent = transaccion.montoStr();
+
+            //AGREGAMOS EL SPAN COMO HIJO DEL LI
+            li.append(span);
+
+            //AGREGAMOS EL LI COMO HIJO DE FRAGMENTO
+            fragment.append(li);
+        };
+
+        listaTransaccionesEl.append(fragment);
+
+    };
+
+
+    //EVENTOS DE BOTONES PARA FILTRAR TRANSACCIONES
+
+    const btnTodoEl = document.getElementById("btnTodoEl");
+    const btnIngresosEl = document.getElementById("btnIngresosEl");
+    const btnEgresosEl = document.getElementById("btnEgresosEl");
+
+    btnTodoEl.addEventListener("click", () => {
+        cargarListaTransacciones(transaccionesDB);
+        btnTodoEl.setAttribute("disabled", true)
+        btnIngresosEl.removeAttribute("disabled");
+        btnEgresosEl.removeAttribute("disabled");
+    });
+
+    btnIngresosEl.addEventListener("click", () => {
+        let filtrados = transaccionesDB.filter(t => t.ingreso);
+        cargarListaTransacciones(filtrados);
+        btnTodoEl.removeAttribute("disabled");
+        btnIngresosEl.setAttribute("disabled", true)
+        btnEgresosEl.removeAttribute("disabled");
+    });
+
+    btnEgresosEl.addEventListener("click", () => {
+        let filtrados = transaccionesDB.filter(t => !t.ingreso);
+        cargarListaTransacciones(filtrados);
+        btnTodoEl.removeAttribute("disabled");
+        btnIngresosEl.removeAttribute("disabled");
+        btnEgresosEl.setAttribute("disabled", true)
+    });
+
+    //FUNCIÓN PRINCIPAL
+
+    function main() {
+        cargarListaTransacciones(transaccionesDB);
+    };
+
+    main();
+
+
+
+</script>
+
+</html>
