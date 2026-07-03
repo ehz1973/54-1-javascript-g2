@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M4-EP-L1-L2</title>
+
+    <script type="module" defer src="./assets/js/script.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Gestor de tareas</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Crear tareas...</h2>
+            <form id="form-add-tarea">
+                <div>
+                    <label for="tituloInput">Titulo Tarea:</label>
+                    <br>
+                    <input type="text" name="titulo" id="tituloInput" required>
+                </div>
+                <div>
+                    <label for="descripcionInput">Agrega una descripción:</label>
+                    <br>
+                    <textarea name="descripcion" id="descripcionInput" required></textarea>
+                </div>
+                <div>
+                    <button type="submit">Agregar Tarea</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2>Listado de tareas</h2>
+            <ul id="lista-tareas">
+
+            </ul>
+        </section>
+    </main>
+
+</body>
+
+</html>

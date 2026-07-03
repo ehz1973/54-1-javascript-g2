@@ -1,7 +1,7 @@
 let edad = 17;
 
 
-if(edad > 17){
+if(edad >= 18){
     //SE EJECUTA SI SE CUMPLE LA CONDICIÓN
     console.log("Usted es mayor de edad.");
 }else {

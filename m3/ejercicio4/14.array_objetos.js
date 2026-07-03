@@ -1,6 +1,13 @@
 const persona = {
     nombre: "Pedro",
     apellido: "Ramiro",
+    notas: [3,5,6,7,8],
+    direccion: {
+        calle: "Calle 1",
+        numero: "a-25",
+        comuna: "Macul",
+        ciudad: "Santiago"
+    },
     saludar(){
         return `Hola, mi nombre es ${this.nombre} ${this.apellido}`;
     }
