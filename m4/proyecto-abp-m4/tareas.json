@@ -1,0 +1,20 @@
+[
+    {
+        "id": "01c641cb-821b-4ab9-aebe-73913bacc022",
+        "descripcion": "Tarea semilla 1",
+        "estado": true,
+        "fechaCreacion": "10/07/2026"
+    },
+    {
+        "id": "e181dae0-e600-4dae-9590-3ecfc137b583",
+        "descripcion": "Tarea semilla 2",
+        "estado": true,
+        "fechaCreacion": "10/07/2026"
+    },
+    {
+        "id": "e181dae0-e600-4dae-9590-3ecfc137b526",
+        "descripcion": "Tarea semilla 2",
+        "estado": true,
+        "fechaCreacion": "10/07/2026"
+    }
+]
